@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios';
 
-import MainCard from './Card'
-import Navbar from './Navbar'
+import MainCard from './component/Card'
+import Navbar from './component/Navbar'
 import Grid from '@mui/material/Unstable_Grid2';
-import Loader from './Loader';
+import Loader from './component/Loader';
 import { Alert } from '@mui/material';
 
 const Food = () => {
@@ -28,11 +28,9 @@ const Food = () => {
         }
     }
 
-    console.log("data ", food);
-    // console.log("error ", error);
-
     React.useEffect(() => {
         getFood()
+        // eslint-disable-next-line
     }, [])
 
     return (
