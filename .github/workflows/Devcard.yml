@@ -1,4 +1,3 @@
-
 name: DevCard
 
 permissions:
@@ -19,6 +18,4 @@ jobs:
       - name: devcard
         uses: dailydotdev/action-devcard@2.0.2
         with:
-          devcard_id: 516dfd2bf57542f9905977258b45c4ad
-          
-          
+          devcard_id: ${{ secrets.DEVCARD_ID }}
