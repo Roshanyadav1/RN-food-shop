@@ -6,6 +6,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import christmas from '../assets/christmas.gif'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,6 +58,7 @@ export default function SearchAppBar({ search, setSearch, searchFood }) {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
+                    <img style={{ maxHeight: '50px' }} src={christmas} alt="tea" />
                     <Typography
                         variant="h6"
                         noWrap
@@ -67,17 +71,20 @@ export default function SearchAppBar({ search, setSearch, searchFood }) {
                         e.preventDefault();
                         searchFood()
                     }} >
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Search>
+                        <Grid2 display='flex' >
+                            <Search>
+                                <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper>
+                                <StyledInputBase
+                                    placeholder="Search…"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </Search>
+                            <Button onClick={searchFood} variant="text" sx={{ color: 'white' }} >Search</Button>
+                        </Grid2>
                     </form>
                 </Toolbar>
             </AppBar>

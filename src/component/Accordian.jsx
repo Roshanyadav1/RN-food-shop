@@ -15,7 +15,7 @@ function Accordian({ item }) {
 
     return (
         <div>
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <Accordion sx={{ boxShadow: 'none' }} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 {/* health panal  */}
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -32,7 +32,7 @@ function Accordian({ item }) {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+            <Accordion sx={{ boxShadow: 'none' }} expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel2bh-content"

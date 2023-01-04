@@ -6,13 +6,18 @@ import Navbar from './component/Navbar'
 import Grid from '@mui/material/Unstable_Grid2';
 import Loader from './component/Loader';
 import { Alert } from '@mui/material';
+import Home from './component/Home';
+import Boul from './assets/boul.gif'
+import Err from './assets/error.gif'
 
 const Food = () => {
-    const [search, setSearch] = React.useState("salad");
+    const [search, setSearch] = React.useState("");
 
     const [food, setFood] = React.useState([])
     const [error, setError] = React.useState("")
     const [loading, setLoading] = React.useState(false)
+
+    const [firstReander, setFirstRender] = React.useState(false)
 
     const getFood = async () => {
         try {
@@ -20,6 +25,7 @@ const Food = () => {
             let response = await axios.get(`https://api.edamam.com/search?app_id=c88a7772&app_key= 50044037b65719fb8fbf19b2d66aec6a&q=${search}`)
 
             setFood(response.data)
+            setFirstRender(false)
             setLoading(false)
             setError("")
         } catch (error) {
@@ -29,8 +35,7 @@ const Food = () => {
     }
 
     React.useEffect(() => {
-        getFood()
-        // eslint-disable-next-line
+        setFirstRender(true)
     }, [])
 
     return (
@@ -49,6 +54,8 @@ const Food = () => {
                             <Grid item   >
                                 {error && (
                                     <>
+                                        <img style={{ maxHeight: '520px', margin: '10px' }} src={Err} alt="boul" />
+
                                         <Alert variant="outlined" severity="error">
                                             {error?.message}
                                         </Alert>
@@ -56,6 +63,7 @@ const Food = () => {
                                 )}
                                 {(food?.hits?.length < 1) && (
                                     <>
+                                        <img style={{ maxHeight: '520px', margin: '10px' }} src={Boul} alt="boul" />
                                         <Alert variant="outlined" severity="info">
                                             Please try something else
                                         </Alert>
@@ -80,6 +88,13 @@ const Food = () => {
                 }
             </Grid>
 
+            {
+                (!error && firstReander) && (
+                    <Grid container justifyContent='center' >
+                        <Home />
+                    </Grid>
+                )
+            }
 
         </Grid>
     )
